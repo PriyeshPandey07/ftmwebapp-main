@@ -13,6 +13,17 @@ jobs:
       # 1. Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Debug repository structure
+        run: |
+           echo "===== Current directory ====="
+           pwd
+           echo "===== Root files ====="
+           ls -la
+           echo "===== All package.json files ====="
+           find . -name package.json -not -path "*/node_modules/*" -print
+           echo "===== Top-level directories ====="
+           find . -maxdepth 2 -type d | sort
+
 
       # 2. Setup Node.js
       - name: Setup Node.js
