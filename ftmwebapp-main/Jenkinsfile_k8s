@@ -1,0 +1,73 @@
+pipeline {
+    options {
+        office365ConnectorWebhooks([
+            [name: 'Office 365', url: env.Teams_Webhook, notifyBackToNormal: false, notifyFailure: true, notifyRepeatedFailure: true, notifySuccess: true, notifyAborted: true]
+        ])
+    }
+    environment {
+        Image_TAG = sh(returnStdout: true, script: 'git describe --tag --abbrev=0').trim()
+        ACR_SERVER = 'ftmfrontend.azurecr.io'  // ACR server
+        ACR_CREDENTIALS = credentials('azure_secret')  // Azure credentials
+        DOCKER_IMAGE = 'ftmfrontend:latest'  // Docker image name
+    }
+    agent any
+       stages {
+                stage('Create Docker Image') {
+                    agent {
+                        label 'master'
+                    }
+                    steps {
+                        script {
+                            // Build the Docker image
+                            sh "docker build -t ${DOCKER_IMAGE} ."
+                        }
+                    }
+                }
+                 stage('Docker Image Tag') {
+                    agent {
+                        label 'master'
+                    }
+                    steps {
+                        script {
+                            // Build the Docker image
+                            sh "docker tag ${DOCKER_IMAGE} ftmfrontend.azurecr.io/ftmfrontend:${Image_TAG}"
+                        }
+                    }
+                }
+                 stage('Push to ACR') {
+                    agent {
+                        label 'master'
+                    }
+                    steps {
+                        script {
+                            // Authenticate with Azure Container Registry using Azure credentials
+                            withCredentials([azureServicePrincipal(credentialsId: 'azure_secret', usePrincipal: true)]) {
+                                // Log in to Azure
+                                sh "az login --service-principal -u \${AZURE_CLIENT_ID} -p \${AZURE_CLIENT_SECRET} --tenant \${AZURE_TENANT_ID}"
+                                
+                                // Log in to ACR
+                                sh "az acr login --name ${ACR_SERVER}"
+                                
+                                // Push the Docker image to ACR
+                                sh "docker push ${ACR_SERVER}/ftmfrontend:${Image_TAG}"
+                            }
+                        }
+                    }
+                }
+                stage('Apply Deployment/Service file') {
+                    steps {
+                        sh "sed -i 's;TAG;$Image_TAG;' .dev/deployment.yml"
+                        sh 'kubectl apply -f deployment.yml'
+                        sh 'kubectl apply -f service.yml'
+                    }
+                }
+
+                stage('Cleanup') {
+                    steps {
+                        sh "docker rmi ${ACR_SERVER}/ftmfrontend:${Image_TAG}"
+                    }
+                }
+            }
+        }
+    }
+}

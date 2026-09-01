@@ -1,0 +1,786 @@
+// 3rd-party Plugins
+@import "~highlight.js/styles/googlecode.css";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+// Theme Styles
+@import "./_metronic/_assets/sass/style.react.scss";
+
+// Default Layout themes
+@import "./_metronic/_assets/sass/themes/layout/header/base/light.scss";
+@import "./_metronic/_assets/sass/themes/layout/header/menu/light.scss";
+@import "./_metronic/_assets/sass/themes/layout/brand/dark.scss";
+@import "./_metronic/_assets/sass/themes/layout/aside/dark.scss";
+
+// Header themes
+// Light
+//@import "./_metronic/_assets/sass/themes/layout/header/base/light.scss";
+// Dark
+// @import "./_metronic/_assets/sass/themes/layout/header/base/dark.scss";
+
+// Header Menu themes
+// Light
+//@import "./_metronic/_assets/sass/themes/layout/header/menu/light.scss";
+// Dark
+// @import "./_metronic/_assets/sass/themes/layout/header/menu/dark.scss";
+
+// Brand themes
+.brand-dark {
+  @import "./_metronic/_assets/sass/themes/layout/brand/dark.scss";
+}
+
+// Light
+.brand-light {
+  @import "./_metronic/_assets/sass/themes/layout/brand/light.scss";
+}
+
+// Aside themes
+// Dark
+//@import "./_metronic/_assets/sass/themes/layout/aside/dark.scss";
+// Light
+// @import "./_metronic/_assets/sass/themes/layout/aside/light.scss";
+
+// .example-highlight {
+//   padding: 0rem 1.5rem 1.75rem !important;
+// }
+
+.example-highlight>pre {
+  background: none transparent !important;
+  margin: 0 !important;
+  padding-top: 0.5rem;
+
+  code {
+    overflow-y: auto;
+    display: block;
+
+    span {
+      background: none transparent !important;
+    }
+  }
+}
+
+.json>pre {
+  background: none #fff !important;
+}
+
+.example-code>.json {
+  background: none #fff !important;
+}
+
+.symbol.symbol-45>svg {
+  width: 100%;
+  max-width: 45px;
+  height: 45px;
+}
+
+.react-bootstrap-table {
+  overflow-x: auto;
+}
+
+.react-bootstrap-table {
+  th {
+    outline: none;
+
+    &.sortable {
+      .svg-icon-sort {
+        opacity: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        .svg-icon-sort {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .table.table-head-custom thead tr {
+    .sortable-active {
+      color: $primary !important;
+    }
+  }
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+// sweetalert css
+
+.colored-toast.swal2-icon-success {
+  background-color: #07bc0c !important;
+}
+
+.swal2-icon.swal2-success [class^="swal2-success-line"] {
+  background-color: hsla(0, 0%, 100%, 0.7);
+}
+
+.swal2-timer-progress-bar {
+  background-color: hsla(0, 0%, 100%, 0.7);
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+  border: 0.25em solid hsla(0, 0%, 100%, 0.7) !important;
+}
+
+.swal2-icon.swal2-error .swal2-success-ring {
+  border: 0.25em solid hsla(0, 0%, 100%, 0.7) !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #e74c3c !important;
+}
+
+.swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
+  background-color: #fff !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+  position: absolute;
+  top: -12px;
+  right: -10px;
+}
+
+.colored-toast .swal2-html-container {
+  color: white;
+}
+
+.form-control.form-control-solid {
+  border-color: hsl(0, 0%, 80%) !important;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+ 
+}
+
+.custom-input {
+  border: none;
+  background-color: transparent; /* or set your desired background color here */
+  color: inherit; /* to inherit the text color from the parent */
+  outline: none; /* to remove the focus outline */
+  margin-left: 5px;
+  width: 230px;
+}
+
+// css changes made by sedhal
+.left-part-login-page {
+  .fleet-title {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .fleet-subtitle {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #FFFFFF;
+  }
+}
+
+.login-parent-right-side {
+  .login-form {
+    background: linear-gradient(180deg, #75C9C3 0%, #E2E8EC 100%);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 30px 60px;
+    max-width: 100% !important;
+  }
+
+  .text-grey {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4A7E7A;
+  }
+  .login-btn {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: -0.05em;
+    color: #639693;
+  }
+  .input-group-text {
+    margin: 1px;
+  }
+}
+
+.brand-logo {
+  img {
+    width: 160px;
+  }
+}
+.input-group-prepend-search {
+  height: calc(1.5em + 1.3rem + 2px);
+}
+.w-35 {
+  width: 35%;
+}
+.search-icon {
+  padding: 0.65rem 0.50rem !important;
+}
+.vehicle-box {
+  border-radius: 10px;
+  padding: 20px;
+  .title {
+    color: #666;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    text-transform: capitalize;
+  }
+  .truck-no {
+    color: #212121;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.5px;
+  }
+}
+.client-page {
+  .marginb-35 {
+    margin-bottom: -35px;
+  }
+}
+.aside-menu {
+  background-color: #668FA3 !important;
+  .menu-nav {
+    .menu-item{
+      .menu-link{
+        .menu-text {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+.nav-tabs {
+  .nav-item {
+    div {
+      font-size: 14px;
+    }
+  }
+}
+
+/* Add a custom CSS class for red color */
+.red-button {
+border-radius: 4px;
+background: linear-gradient(180deg, #FD4547 0%, #FFC054 100%);
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+color:white;
+}
+
+/* Custom styles for pagination */
+.pagination a.page-link {
+  color:black; /* Change this color to your desired color */
+  background-color: transparent;
+  border-color: transparent;//removes border
+}
+
+/* Custom style for active page */
+.pagination .page-item.active .page-link {
+  background-color: #c2bfc6; /* Change this color to your desired color */
+  border-color: #333;
+  color: black; /* Change this color to your desired color */
+}
+
+/* Add this to your CSS file */
+.custom-pagination-button{
+  margin-left: 20px;
+}
+
+
+/* Add a custom CSS class for centering text */
+.centered-text {
+ height: 35vh; /* This ensures vertical centering */
+}
+
+.date-input {
+  font-size: 100px; /* Adjust the font size as needed */
+}
+
+//sort button
+.btn_sort{
+  border-color: hsl(0, 0%, 80%) !important;
+}
+
+.sim-upload-btn-parent {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+  .btn {
+    cursor: pointer;
+  }
+}
+.add-user-btn {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+}
+.input-group-text {
+  color: #17c191 !important;
+}
+.input-group .input-group-prepend + .form-control.is-valid, .input-group .input-group-prepend + .form-control.is-invalid {
+  margin-left: 0px !important;
+}
+.w-30 {
+  width: 30%;
+}
+// left navigation color change
+.aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link {
+  background-color: #4C7889 !important;
+}
+.aside-menu .menu-nav > .menu-item {
+  .MuiSvgIcon-root {
+    fill: #FFFAF1 !important;
+  }
+}
+.aside-menu .menu-nav > .menu-item.menu-item-active > .menu-link .menu-text {
+  color: #FFFAF1 !important;
+}
+.aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-heading, .aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link {
+  background-color: #4C7889 !important;
+}
+.aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-icon {
+  color: #FFFAF1 !important;
+}
+.aside-menu .menu-nav > .menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover > .menu-link .menu-text {
+  color: #FFFAF1 !important;
+}
+.aside-menu .menu-nav > .menu-item.menu-item-open > .menu-link {
+  background-color: #4C7889 !important;
+}
+.aside-menu .menu-nav > .menu-item.menu-item-open > .menu-link .menu-text {
+  color: #FFFAF1 !important;
+}
+.brand {
+  justify-content: space-around !important;
+  height: 80px !important;
+}
+.brand-dark .brand {
+  background-color: #ffffff !important;
+}
+.brand-logo img {
+  width: 120px !important;
+}
+// primary btn color change
+.btn.btn-primary {
+  background-color: #668FA3 !important;
+  border-color: #668FA3 !important;
+}
+// alert cancel button css
+.swal2-cancel {
+  background-color: #F3F6F9 !important;
+  border-color: #F3F6F9 !important;
+  color: #7E8299 !important;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+// map infowindow
+.gm-style .gm-style-iw-d::-webkit-scrollbar-track, 
+.gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece {
+  background: rgba(0, 0, 0, 0.72) !important;
+}
+.gm-style-iw-d {
+ overflow: auto !important;
+}
+.gm-style .gm-style-iw-c,
+.gm-style .gm-style-iw-t::after { 
+  background: rgba(0, 0, 0, 0.72) !important;
+}
+.gm-style .gm-style-iw-tc::after {   background: rgba(0, 0, 0, 0.72) !important; }
+.gm-ui-hover-effect>span {
+  background-color: #fff !important
+}
+.live-speed{
+  margin-right: 10px;
+  background: #fff;
+  color: #2A7C76;
+  padding: 10px;
+  height: 34px;
+  width: 34px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.live p {
+  font-size: 12px !important;
+}
+.stops p {
+  font-size: 12px !important;
+}
+.onboarding {
+  margin-right: 50px !important;
+  .menu-link {
+    background-color: rgba(77, 89, 149, 0.06) !important;
+    padding: 0.65rem 1.1rem !important;
+  }
+  .menu-link:hover{
+    background-color: #4C7889 !important;
+    .menu-text {
+      color: #fff !important
+    }
+  }
+}
+.css-yk16xz-control {
+  background-color: #F3F6F9 !important;
+}
+.width-200 {
+  width: 200px;
+}
+.width_18 {
+  width: 18%;
+}
+.width-260 {
+  width: 260px;
+}
+.dashboard-title {
+  font-weight: 550;
+  font-size: 16px;
+}
+.pi-chart-wrapper {
+  width: 440px !important
+}
+.apexcharts-legend-series {
+  display: flex;
+  align-items: center;
+}
+.nav.nav-pills .show > .nav-link, .nav.nav-pills .nav-link.active {
+  background-color: #34817B !important;
+}
+.nav.nav-pills .nav-link {
+  color: #34817B;
+  border: 1px solid #34817B;
+  margin-top: 3px;
+}
+.h-95 {
+  height: 300px;
+}
+.table {
+  tr {
+    td {
+      a {
+        color: #34817B;
+      }
+    }
+  }
+}
+.text-underline {
+  &:hover {
+    text-decoration: underline !important;
+  }
+  text-decoration: underline;
+}
+.chart {
+  .react-datepicker__input-container {
+    input {
+      width: 100px;
+      text-align: center;
+    }
+  }
+  .react-datepicker-popper {
+    left: -40px !important;
+  }
+}
+.apexcharts-toolbar {
+  z-index: 0 !important;
+}
+::v-deep .apexcharts-menu-item.exportCSV {
+  display: none;
+}
+.exportSVG {
+  display: none;
+}
+.react-datepicker-onboarding {
+  .react-datepicker-wrapper {
+    width: 100% !important;
+  }
+}
+.react-datepicker-client {
+   .react-datepicker-wrapper {
+      width: 100% !important;
+      .custom-datepicker {
+        border: 0;
+        outline: none;
+        width: 100%;
+        box-shadow: initial;
+        border-radius: 0.25rem;
+        padding: 0.7rem;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        background: white;
+      }
+   }
+   .react-datepicker__calendar-icon {
+      right: 0;
+   }
+}
+.error-show {
+  color: red;
+  padding-top: 0.25rem;
+}
+.react-select-box {
+  .css-g1d714-ValueContainer {
+    padding: 6px 8px !important;
+  }
+}
+.client_onboarding_page {
+  .form-group {
+    margin-bottom: 1rem !important
+  }
+}
+
+.right {
+  flex: 1; 
+  height: 100vh;
+}
+.share-link-modal {
+  .close {
+    span {
+      display: block !important;
+    }
+  }
+}
+
+/* Modal.css */
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+  max-width: 600px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 50px;
+}
+
+.modal-close:hover {
+  color: red;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+// .modal-form {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .modal-form label {
+//   margin-bottom: 5px;
+// }
+
+// .modal-form input {
+//   margin-bottom: 15px;
+//   padding: 10px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// }
+
+// .modal-form button {
+//   padding: 10px;
+//   background-color: #007bff;
+//   border: none;
+//   color: white;
+//   border-radius: 4px;
+//   cursor: pointer;
+// }
+
+// .modal-form button:hover {
+//   background-color: #0056b3;
+// }
+
+// .modal-form select {
+//   margin-bottom: 15px;
+//   padding: 10px;
+//   border: 1px solid #ccc;
+//   border-radius: 4px;
+// }
+
+////////////////////////////////////////////////////////////////////
+/// 
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  // margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 160px; /* Adjust as needed */
+  margin-right: 15px; /* Space between fields */
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #131212;
+  cursor: pointer;
+  width: 120px;
+}
+
+// button:hover {
+//   background-color: #0056b3;
+// }
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 80%;
+  }
+
+  .modal-header {
+    font-size: 1.2em;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    margin-right: 0;
+    margin-bottom: 15px; /* Add spacing between fields in column layout */
+  }
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-header {
+    font-size: 1em;
+  }
+
+  .modal-close {
+    font-size: 20px;
+    width: 40px;
+  }
+
+  input, select {
+    padding: 8px;
+  }
+
+  button {
+    padding: 8px;
+    width: 100%;
+  }
+}
+.drp-buttons{
+  margin-top:250px;
+  display: block;
+  position: absolute;
+  background-color: white;
+  width: -webkit-fill-available;
+
+}
+
+.daterangepicker {
+  height: 300px;
+}
+.w-150 {
+  width: 150px;
+}
+.date-picker-report {
+  border-color: hsl(0, 0%, 80%) !important;
+  border-radius: 4px !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+}

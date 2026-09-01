@@ -1,0 +1,54 @@
+.mapContainer {
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: static;
+  color: #fff;
+}
+.mapContainer > div {
+  margin: 20px 20px;
+}
+.btnCont {
+  display: flex;
+  justify-content: center;
+}
+.map-loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif")
+    50% 50% no-repeat rgb(249, 249, 249);
+}
+
+.genderWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.radioBtnWrapper {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.radioBtnLabelWrapper {
+  padding-right: 1.5rem;
+  padding-left: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.__react_component_tooltip {
+  max-width: 300px;
+}
+
+.modal-dialog .modal-xl {
+  display: "flex" !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

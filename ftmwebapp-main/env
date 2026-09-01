@@ -1,0 +1,9 @@
+SKIP_PREFLIGHT_CHECK=true
+#REACT_APP_API_URL=http://localhost:9003/api/
+#REACT_APP_PUBLIC_URL=http://localhost:9003/
+#REACT_APP_SITE_URL=http://localhost:3000/
+
+#stagings
+REACT_APP_API_URL=https://api.fleetstakes.com/api/
+REACT_APP_PUBLIC_URL=https://api.fleetstakes.com/
+REACT_APP_SITE_URL=https://admin.fleetstakes.com/

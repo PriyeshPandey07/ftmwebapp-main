@@ -1,0 +1,3 @@
+cd /var/www/html/
+chown -R www-data:www-data fsadmin/
+systemctl restart nginx
