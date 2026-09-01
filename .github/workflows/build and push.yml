@@ -18,14 +18,14 @@ jobs:
         with:
           node-version: 22.12.0
           cache: npm
-          cache-dependency-path: ./package-lock.json
+          cache-dependency-path: ftmwebapp-main/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./
+        working-directory: ./ftmwebapp-main
         run: npm ci --legacy-peer-deps
 
       - name: Build frontend
-        working-directory: ./
+        working-directory: ./ftmwebapp-main
         run: npm run build
         env:
           NODE_OPTIONS: --openssl-legacy-provider
