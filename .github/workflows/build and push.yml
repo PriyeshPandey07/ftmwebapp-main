@@ -28,6 +28,7 @@ jobs:
       - name: Build frontend
         run: npm run build
         env:
+          CI: false
           NODE_OPTIONS: --openssl-legacy-provider
 
       # 5. Check build output
