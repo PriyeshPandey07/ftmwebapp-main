@@ -10,31 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.12.0
-          cache: npm
-          cache-dependency-path: ftmwebapp-main/package-lock.json
 
+      # 3. Install dependencies
       - name: Install dependencies
         working-directory: ./ftmwebapp-main
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
+      # 4. Build frontend
       - name: Build frontend
         working-directory: ./ftmwebapp-main
         run: npm run build
         env:
           NODE_OPTIONS: --openssl-legacy-provider
 
+      # 5. Show build output
       - name: Check build output
         run: |
-          echo "===== Build output ====="
-          ls -lah ./build
+          echo "===== Build directory ====="
+          ls -la ./ftmwebapp-main/build
 
+      # 6. Copy build files to server
       - name: Copy build files to server
         uses: appleboy/scp-action@v1
         with:
@@ -42,8 +46,9 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.ORACLE_SSH_KEY }}
           source: "ftmwebapp-main/build/*"
-          target: "/home/ubuntu/fsadmin_deploy"
+          target: "/home/ubuntu/ftmwebapp-main"
 
+      # 7. Deploy to Nginx server
       - name: Deploy and reload Nginx
         uses: appleboy/ssh-action@v1
         with:
@@ -53,19 +58,21 @@ jobs:
           script: |
             set -e
 
-            echo "===== Deploying Admin Fleetstakes ====="
+            echo "===== Starting deployment ====="
 
+            echo "Removing old frontend..."
             sudo rm -rf /var/www/html/fsadmin/app/html/*
 
-            sudo cp -r \
-              /home/ubuntu/fsadmin_deploy/ftmwebapp-main/build/* \
-              /var/www/html/fsadmin/app/html/
+            echo "Copying new frontend..."
+            sudo cp -r /home/ubuntu/ftmwebapp-main/build/* /var/www/html/fsadmin/app/html/
 
-            sudo chown -R www-data:www-data \
-              /var/www/html/fsadmin/app/html/
+            echo "Setting permissions..."
+            sudo chown -R www-data:www-data /var/www/html/fsadmin/app/html/
 
+            echo "Testing Nginx configuration..."
             sudo nginx -t
 
+            echo "Reloading Nginx..."
             sudo systemctl reload nginx
 
-            echo "===== Deployment successful ====="
+            echo "===== Deployment completed successfully ====="
