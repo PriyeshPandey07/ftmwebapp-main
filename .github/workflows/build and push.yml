@@ -54,7 +54,7 @@ jobs:
             sudo rm -rf /var/www/html/fsadmin/app/html/*
 
             echo "Copying new frontend files..."
-            sudo cp -r /home/ubuntu/fsadmin_deploy/build/* /var/www/html/fsadmin/app/html/
+            sudo cp -r /home/ubuntu/ftmwebapp-main/build/* /var/www/html/fsadmin/app/html/
 
             echo "Setting permissions..."
             sudo chown -R www-data:www-data /var/www/html/fsadmin/app/html/
