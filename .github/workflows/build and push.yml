@@ -22,21 +22,25 @@ jobs:
 
       # 3. Install dependencies
       - name: Install dependencies
-        working-directory: ./ftmwebapp-main
         run: npm install --legacy-peer-deps
 
       # 4. Build frontend
       - name: Build frontend
-        working-directory: ./ftmwebapp-main
         run: npm run build
         env:
           NODE_OPTIONS: --openssl-legacy-provider
 
-      # 5. Show build output
+      # 5. Check build output
       - name: Check build output
         run: |
-          echo "===== Build directory ====="
-          ls -la ./ftmwebapp-main/build
+          echo "Current directory:"
+          pwd
+
+          echo "Repository contents:"
+          ls -la
+
+          echo "Build contents:"
+          ls -la build
 
       # 6. Copy build files to server
       - name: Copy build files to server
@@ -45,8 +49,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.ORACLE_SSH_KEY }}
-          source: "ftmwebapp-main/build/*"
-          target: "/home/ubuntu/ftmwebapp-main"
+          source: "build/*"
+          target: "/home/ubuntu/fsadmin_deploy"
 
       # 7. Deploy to Nginx server
       - name: Deploy and reload Nginx
@@ -60,11 +64,11 @@ jobs:
 
             echo "===== Starting deployment ====="
 
-            echo "Removing old frontend..."
+            echo "Removing old frontend files..."
             sudo rm -rf /var/www/html/fsadmin/app/html/*
 
-            echo "Copying new frontend..."
-            sudo cp -r /home/ubuntu/ftmwebapp-main/build/* /var/www/html/fsadmin/app/html/
+            echo "Copying new frontend files..."
+            sudo cp -r /home/ubuntu/fsadmin_deploy/build/* /var/www/html/fsadmin/app/html/
 
             echo "Setting permissions..."
             sudo chown -R www-data:www-data /var/www/html/fsadmin/app/html/
