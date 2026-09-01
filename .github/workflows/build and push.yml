@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22.12.0
-          cache: npm
 
-
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-
+      # 4. Build frontend
       - name: Build frontend
         run: npm run build
         env:
@@ -40,7 +40,7 @@ jobs:
           source: "build/*"
           target: "/home/ubuntu/fsadmin_deploy"
 
-      # 6. Deploy files and reload Nginx
+      # 6. Deploy and reload Nginx
       - name: Deploy and reload Nginx
         uses: appleboy/ssh-action@v1
         with:
@@ -49,7 +49,7 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             set -e
-            
+
             echo "Removing old frontend files..."
             sudo rm -rf /var/www/html/fsadmin/app/html/*
 
