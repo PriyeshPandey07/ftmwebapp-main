@@ -49,7 +49,7 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             set -e
-
+            
             echo "Removing old frontend files..."
             sudo rm -rf /var/www/html/fsadmin/app/html/*
 
