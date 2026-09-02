@@ -34,6 +34,6 @@ jobs:
           switches: -avzr --delete
           path: build/
           remote_path: /var/www/html/fsadmin/app/html/
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_host: ${{ secrets.SERVER_HOST }}
+          remote_user: ${{ secrets.SERVER_USERNAME }}
+          remote_key: ${{ secrets.AWS_SSH_KEY }}
