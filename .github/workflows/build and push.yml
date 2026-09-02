@@ -1,83 +1,38 @@
-name: Admin Fleetstakes - Build and Deploy
+name: Build and Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]   # change to 'master' if that's your default branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout repository
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22.12.0
+          node-version: '20'
+          cache: 'npm'
 
-      # 3. Install dependencies
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm ci
 
-      # 4. Build frontend
-      - name: Build frontend
+      - name: Build
         run: npm run build
         env:
           CI: false
-          NODE_OPTIONS: --openssl-legacy-provider
+          # Uncomment and add any build-time env vars your app needs:
+          # REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
-      # 5. Check build output
-      - name: Check build output
-        run: |
-          echo "Current directory:"
-          pwd
-
-          echo "Repository contents:"
-          ls -la
-
-          echo "Build contents:"
-          ls -la build
-
-      # 6. Copy build files to server
-      - name: Copy build files to server
-        uses: appleboy/scp-action@v1
+      - name: Deploy to server via rsync
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.AWS_SSH_KEY }}
-          source: "build/*"
-          target: "/home/ubuntu/fsadmin_deploy"
-
-      # 7. Deploy to Nginx server
-      - name: Deploy and reload Nginx
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.AWS_SSH_KEY }}
-          script: |
-            set -e
-
-            echo "===== Starting deployment ====="
-
-            echo "Removing old frontend files..."
-            sudo rm -rf /var/www/html/fsadmin/app/html/*
-
-            echo "Copying new frontend files..."
-            sudo cp -r /home/ubuntu/fsadmin_deploy/build/* /var/www/html/fsadmin/app/html/
-
-            echo "Setting permissions..."
-            sudo chown -R www-data:www-data /var/www/html/fsadmin/app/html/
-
-            echo "Testing Nginx configuration..."
-            sudo nginx -t
-
-            echo "Reloading Nginx..."
-            sudo systemctl reload nginx
-
-            echo "===== Deployment completed successfully ====="
+          switches: -avzr --delete
+          path: build/
+          remote_path: /var/www/html/fsadmin/app/html/
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
