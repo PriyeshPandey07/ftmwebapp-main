@@ -24,6 +24,7 @@ jobs:
         run: npm run build
         env:
           CI: false
+          NODE_OPTIONS: --openssl-legacy-provider
           # Uncomment and add any build-time env vars your app needs:
           # REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
